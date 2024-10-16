@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
 
 @import url('./variables.css');
 @import url('./utilis.css');
 @import url('./navbar.css');
 
 body {
-    /* font-family     : var(--font-family); */
+    font-family     : var(--font-inter);
     margin          : 0;
     padding         : 0;
     background-color: #f4f4f4;
     box-sizing      : border-box;
+}
+
+
+h1 {
+    color: red;
 }
