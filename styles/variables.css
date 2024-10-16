@@ -1,12 +1,13 @@
 :root {
     /* Colors */
-    --primary-color: #9348e3;
+    --primary-color: #7065CE;
     --secondary-color: #ef70f6;
 
     /* Fonts */
     --font-family: 'Arial, sans-serif';
     --font-inter: "Inter", sans-serif;
     --font-megrim: "Megrim", system-ui;
+    --font-nunito: "Nunito", sans-serif;
 
     /* Layout */
     --max-body-w: 1500px
