@@ -2,6 +2,7 @@
 
 @import url('./variables.css');
 @import url('./utilis.css');
+@import url('./navbar.css');
 
 body {
     /* font-family     : var(--font-family); */
