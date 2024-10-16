@@ -4,6 +4,7 @@
 @import url('./variables.css');
 @import url('./utilis.css');
 @import url('./navbar.css');
+@import url('./cards.css');
 
 body {
     font-family     : var(--font-inter);
@@ -13,7 +14,12 @@ body {
     box-sizing      : border-box;
 }
 
+.container {
+    max-width: var(--max-body-w);
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-h1 {
-    color: red;
+.main-body {
+    padding-top: 100px;
 }
