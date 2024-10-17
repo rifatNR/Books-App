@@ -23,7 +23,7 @@ const renderSingleBookCard = (id, title, image, authors, totalDownload) => {
                         <i class="fa-solid fa-download"></i>
                     </div>
                 </div>
-                <div class="card-title truncate">${title}</div>
+                <div class="card-title truncate" title="${title}">${title}</div>
                 <div id="author-container">${authorsHtml?.join("")}</div>
                 
             </div>
