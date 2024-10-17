@@ -1,23 +1,56 @@
 .navbar-container {
     background-color: white;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
-    position: fixed;
-    width: 100%;
-    z-index: var(--z-navbar);
+    box-shadow      : 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
+    position        : fixed;
+    width           : 100%;
+    z-index         : var(--z-navbar);
 }
+
 .navbar {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    display: flex;
-    align-items: center;
+    height         : 70px;
+    display        : flex;
+    align-items    : center;
+    display        : flex;
+    align-items    : center;
     justify-content: space-between;
 }
 
 .logo {
     font-family: var(--font-megrim);
     font-weight: bolder;
-    font-size: 30px;
-    padding: 10px 0;
-    display: inline-block;
+    font-size  : 30px;
+    padding    : 10px 0;
+    display    : inline-block;
+}
+
+.navbar-right-container {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+}
+
+
+.navbar-wishlist-icon {
+    padding         : 13.5px;
+    display         : grid;
+    place-items     : center;
+    border-radius   : 5px;
+    cursor          : pointer;
+    background-color: white;
+    color           : var(--primary-color);
+    border       : 1px solid var(--primary-color);
+    margin-right    : 10px;
+    font-size       : 20px;
+    transition: all ease-in 0.2s;
+}
+
+.navbar-wishlist-icon:hover {
+    background-color           : var(--primary-color);
+    color: white;
+}
+
+.navbar-wishlist-text {
+    font-size: 15px;
+    color    : var(--primary-color);
+
 }
