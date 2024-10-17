@@ -9,7 +9,7 @@ const renderSingleBookCard = (id, title, image, authors, totalDownload) => {
         <div id="card_${id}" class="card">
             <div class="card-image-container">
                 <img src="${image}" alt="">
-                <div class="wishlist-icon">
+                <div class="wishlist-icon shadow">
                     <i class="fa-regular fa-heart"></i>
                 </div>
             </div>
