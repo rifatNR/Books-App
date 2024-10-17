@@ -1,24 +1,31 @@
 .card-container {
-    display: grid;
+    display              : grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 25px;
-    row-gap: 25px;
+    /* column-gap        : 25px; */
+    /* row-gap           : 25px; */
+    grid-gap             : 25px;
+    min-height           : 0;
+    min-width            : 0;
 }
-@media (width < 1400px) {
+
+@media (width < 1500px) {
     .card-container {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
-@media (width < 1100px) {
+
+@media (width < 1200px) {
     .card-container {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
+
 @media (width < 768px) {
     .card-container {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 @media (width < 500px) {
     .card-container {
         grid-template-columns: 1fr;
@@ -26,79 +33,95 @@
 }
 
 .card {
-    border: 2px solid rgb(221, 221, 221);
+    min-width    : 0;
+    border       : 2px solid rgb(221, 221, 221);
     border-radius: 10px;
-    padding: 15px;
-    opacity: 0;
+    padding      : 15px;
+    opacity      : 0;
+    cursor: pointer;
 }
 
 
 .card-image-container {
-    height: 350px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
+    height          : 350px;
+    position        : relative;
+    overflow        : hidden;
+    border-radius   : 10px;
     background-color: rgb(234, 234, 234);
+}
+.card-image-container:hover {
+    overflow        : visible;
+
+}
+@media (width < 500px) {
+    .card-image-container {
+        height          : 450px;
+    }
 }
 
 .card-image-container img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position : absolute;
+    top      : 50%;
+    left     : 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    width    : 100%;
 }
 
 .wishlist-icon {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    padding: 10px;
-    height: 20px;
-    width: 20px;
-    display: grid;
-    place-items: center;
-    border-radius: 10px;
-    cursor: pointer;
+    position        : absolute;
+    top             : 5px;
+    right           : 5px;
+    padding         : 10px;
+    height          : 20px;
+    width           : 20px;
+    display         : grid;
+    place-items     : center;
+    border-radius   : 10px;
+    cursor          : pointer;
     background-color: white;
-    color: var(--primary-color);
+    color           : var(--primary-color);
 }
+
 .wishlist-icon.active {
     background-color: var(--primary-color);
-    color: white;
+    color           : white;
 }
 
 .card-texts-container {
     font-family: var(--font-nunito);
-    margin-top: 15px;
+    margin-top : 15px;
 }
 
 .card-toolbar {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom  : 5px;
 }
+
 .book-id {
     font-weight: bold;
-    font-size: 20px;
+    font-size  : 20px;
 }
+
 .download-count {
-    display: flex;
+    display    : flex;
     align-items: center;
-    color: gray;
+    color      : gray;
 }
+
 .download-count-text {
-    font-weight: bold;
-    font-size: 15px;
+    font-weight : bold;
+    font-size   : 15px;
     margin-right: 5px;
 }
 
 .card-title {
     font-weight: bold;
-    font-size: 20px;
+    font-size  : 20px;
 }
+
 .card-subtitle {
-    color: var(--primary-color);
+    color      : var(--primary-color);
     font-weight: 600;
 }

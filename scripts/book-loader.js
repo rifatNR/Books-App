@@ -1,10 +1,14 @@
-import { delay, createElement } from "./helper.js";
+import { delay, createElement, formatLargeNumber, addClass } from "./helper.js";
 
-const renderSingleBookCard = (id) => {
+const renderSingleBookCard = (id, title, image, authors, totalDownload) => {
+    const authorsHtml = authors?.map(
+        (author) => `<div class="card-subtitle truncate">${author?.name}</div>`
+    );
+
     const cardHTML = `
         <div id="card_${id}" class="card">
             <div class="card-image-container">
-                <img src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg" alt="">
+                <img src="${image}" alt="">
                 <div class="wishlist-icon">
                     <i class="fa-regular fa-heart"></i>
                 </div>
@@ -15,12 +19,13 @@ const renderSingleBookCard = (id) => {
                         #${id}
                     </div>
                     <div class="download-count">
-                        <span class="download-count-text">54K</span>
+                        <span class="download-count-text">${totalDownload}</span>
                         <i class="fa-solid fa-download"></i>
                     </div>
                 </div>
-                <div class="card-title truncate">Harry Potter and the something something</div>
-                <div class="card-subtitle truncate">George R. R. Martin</div>
+                <div class="card-title truncate">${title}</div>
+                <div id="author-container">${authorsHtml?.join("")}</div>
+                
             </div>
         </div>
     `;
@@ -28,7 +33,7 @@ const renderSingleBookCard = (id) => {
     return cardHTML;
 };
 
-const renderBooks = async () => {
+const renderBooks = async (books) => {
     const cardContainer = document.getElementById("card-container");
 
     if (!cardContainer) {
@@ -36,23 +41,44 @@ const renderBooks = async () => {
         return;
     }
 
-    for (let i = 0; i < 10; i++) {
-        // await delay(200);
-        const id = i;
-        const cardHTML = renderSingleBookCard(id);
+    for (let i = 0; i < books?.length; i++) {
+        const book = books[i];
+        const { id, title, authors, download_count } = book;
+        const image = book.formats["image/jpeg"];
+        const totalDownload = formatLargeNumber(download_count);
+
+        const cardHTML = renderSingleBookCard(
+            id,
+            title,
+            image,
+            authors,
+            totalDownload
+        );
         const newCard = createElement(cardHTML);
         cardContainer.appendChild(newCard);
 
         setTimeout(() => {
-            document.getElementById(`card_${id}`)?.classList.add("fade-in");
+            addClass(`#card_${id}`, ["fade-in"]);
         }, 50 * i);
     }
 };
 
-export const fetchBooks = async () => {};
+export const fetchBooks = async () => {
+    try {
+        // const url = `https://gutendex.com/books/?page=1`
+        const url = `/demo-data/demo-response.json`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        return data?.results;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+};
 
 export const initBookLoader = async () => {
-    // const books = await fetchBooks()
+    const books = await fetchBooks();
 
-    renderBooks();
+    renderBooks(books);
 };

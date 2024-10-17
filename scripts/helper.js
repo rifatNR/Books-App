@@ -9,3 +9,29 @@ export const delay = (millisecond) => {
         setTimeout(resolve, millisecond);
     });
 };
+
+export const formatLargeNumber = (num) => {
+    if (num >= 1_000_000_000) {
+        return (num / 1_000_000_000).toFixed(1) + "B";
+    } else if (num >= 1_000_000) {
+        return (num / 1_000_000).toFixed(1) + "M";
+    } else if (num >= 1_000) {
+        return (num / 1_000).toFixed(1) + "K";
+    } else {
+        return num.toString();
+    }
+};
+
+export const addClass = (identifier, classes) => {
+    const element = document.querySelector(identifier);
+
+    if (!element) {
+        console.error(`addClass => ${identifier} not found!`);
+        return;
+    }
+
+    for (let i = 0; i < classes.length; i++) {
+        const cssClass = classes[i];
+        element.classList.add(cssClass);
+    }
+};
