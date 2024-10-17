@@ -10,5 +10,8 @@
     --font-nunito: "Nunito", sans-serif;
 
     /* Layout */
-    --max-body-w: 1500px
+    --max-body-w: 1500px;
+
+    /* z-index */
+    --z-navbar: 100;
 }
