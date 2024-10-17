@@ -5,6 +5,7 @@
 @import url('./variables.css');
 @import url('./utilis.css');
 @import url('./navbar.css');
+@import url('./searchbar.css');
 @import url('./cards.css');
 
 body {
