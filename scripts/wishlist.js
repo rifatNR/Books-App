@@ -16,9 +16,9 @@ export const removeFromWishlist = (id) => {
 export const updateWishlistButton = (id, isActive) => {
     const button = document.getElementById(`wishlist_${id}`);
     if (isActive) {
-        button.classList.add("active");
+        button?.classList.add("active");
     } else {
-        button.classList.remove("active");
+        button?.classList.remove("active");
     }
 };
 

@@ -188,12 +188,12 @@ export const initBookLoader = async () => {
     const { books, totalResults } = await fetchBooks(url);
     toggleLoader("hide");
 
-    const totalPage = Math.ceil(totalResults / books.length);
-    updatePagination(currentPage, totalPage);
-
     toggleError("404: No books found!", !!books ? "hide" : "show");
 
     if (books) {
+        const totalPage = Math.ceil(totalResults / books.length);
+        updatePagination(currentPage, totalPage);
+
         await renderBooks(books);
         loadWishlistIds();
         initWishlistEventListener();
