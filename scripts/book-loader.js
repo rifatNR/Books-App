@@ -117,14 +117,14 @@ const renderSingleBookCard = async (
     );
 
     const cardHTML = `
-        <div id="card_${id}" class="card">
+        <a href="/view.html?id=${id}" id="card_${id}" class="card">
             <div class="card-image-container">
                 <img src="${image}" alt="">
                 <div data-id="${id}" id="wishlist_${id}" class="wishlist shadow">
                     <i class="fa-regular fa-heart pointer-none"></i>
                 </div>
             </div>
-            <div class="card-texts-container">
+            <div  class="card-texts-container">
                 <div class="card-toolbar">
                     <div class="book-id">
                         #${id}
@@ -138,7 +138,7 @@ const renderSingleBookCard = async (
                 <div id="author-container">${authorsHtml?.join("")}</div>
                 
             </div>
-        </div>
+        </a>
     `;
 
     return cardHTML;

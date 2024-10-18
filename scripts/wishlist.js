@@ -27,6 +27,8 @@ export const initWishlistEventListener = () => {
 
     wishlistButtons.forEach((button) => {
         button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const id = event.target.getAttribute("data-id");
             console.log(`Wishlist ID: ${id}`);
             if (!id) return;
