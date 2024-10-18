@@ -40,3 +40,13 @@ export const getQueryParam = (param) => {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 };
+
+export const debounce = (func, delay) => {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+};

@@ -4,6 +4,7 @@ import {
     formatLargeNumber,
     addClass,
     getQueryParam,
+    debounce,
 } from "./helper.js";
 import { initWishlistEventListener, loadWishlistIds } from "./wishlist.js";
 
@@ -133,6 +134,7 @@ const renderSingleBookCard = async (
 
 const renderBooks = async (books) => {
     const cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = "";
 
     if (!cardContainer) {
         console.error("card-container not found");
@@ -161,7 +163,10 @@ const renderBooks = async (books) => {
     }
 };
 
-export const fetchBooks = async (url) => {
+export const fetchBooks = async (_url) => {
+    const url = _url.replaceAll(" ", "%20");
+    console.log("url: ", url);
+
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -195,8 +200,10 @@ const fetchBooksByIds = async (ids) => {
 
 export const initBookLoader = async () => {
     const currentPage = parseInt(getQueryParam("page") ?? 1);
-    const url = `https://gutendex.com/books/?page=${currentPage}`;
-    // const url = `/demo-data/demo-response.json`;
+
+    const mainUrl = `https://gutendex.com/books/?page=${currentPage}`;
+    const cachedUrl = `/demo-data/demo-response.json`;
+    const url = currentPage == 1 ? cachedUrl : mainUrl;
 
     toggleLoader("show");
     const { books, totalResults } = await fetchBooks(url);
@@ -230,4 +237,36 @@ export const initWishlistPage = async () => {
         loadWishlistIds();
         initWishlistEventListener();
     }
+};
+
+const handleSearch = async (event) => {
+    const query = event.target.value;
+    console.log("Searching for:", query);
+
+    if (!query || query == "") {
+        initBookLoader();
+        return;
+    }
+
+    // const currentPage = parseInt(getQueryParam("page") ?? 1);
+    const url = `https://gutendex.com/books/?search=${query}`;
+
+    toggleLoader("show");
+    const { books, totalResults } = await fetchBooks(url);
+    toggleLoader("hide");
+
+    toggleError("404: No books found!", !!books ? "hide" : "show");
+
+    if (books) {
+        const totalPage = Math.ceil(totalResults / books.length);
+        // updatePagination(currentPage, totalPage);
+
+        await renderBooks(books);
+        loadWishlistIds();
+        initWishlistEventListener();
+    }
+};
+export const initSearch = async () => {
+    const searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("input", debounce(handleSearch, 1000));
 };

@@ -1,5 +1,5 @@
-import { initBookLoader, initWishlistPage } from "/scripts/book-loader.js";
-import { loadHTML } from "/scripts/html-loader.js";
+import { initBookLoader, initWishlistPage, initSearch } from "./book-loader.js";
+import { loadHTML } from "./html-loader.js";
 
 Promise.all([
     loadHTML("navbar", "/components/navbar.html"),
@@ -9,6 +9,8 @@ Promise.all([
         console.log("All sections are loaded");
 
         const path = window.location.pathname;
+
+        initSearch();
 
         if (path == "/") {
             initBookLoader();
