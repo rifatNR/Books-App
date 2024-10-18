@@ -5,3 +5,6 @@ GET https://gutendex.com/books/?page=2327
 
 ###
 GET https://gutendex.com/books/1259
+
+###
+GET https://gutendex.com/books?title=Tim%20and%20Tip

@@ -1,4 +1,4 @@
-import { initBookLoader } from "/scripts/book-loader.js";
+import { initBookLoader, initWishlistPage } from "/scripts/book-loader.js";
 import { loadHTML } from "/scripts/html-loader.js";
 
 Promise.all([
@@ -8,7 +8,16 @@ Promise.all([
     .then(() => {
         console.log("All sections are loaded");
 
-        initBookLoader();
+        const path = window.location.pathname;
+
+        if (path == "/") {
+            initBookLoader();
+        } else if ("/wishlist.html") {
+            initWishlistPage();
+            document
+                .getElementById("pagination-container")
+                ?.classList.add("hide");
+        }
     })
     .catch((error) => {
         console.error("Error loading sections: ", error);

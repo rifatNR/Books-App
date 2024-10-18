@@ -179,6 +179,20 @@ export const fetchBooks = async (url) => {
     }
 };
 
+const fetchBooksByIds = async (ids) => {
+    const baseUrl = "https://gutendex.com/books/";
+    try {
+        const requests = ids.map((id) =>
+            fetch(`${baseUrl}${id}`).then((response) => response.json())
+        );
+        const results = await Promise.all(requests);
+        return results;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    }
+};
+
 export const initBookLoader = async () => {
     const currentPage = parseInt(getQueryParam("page") ?? 1);
     const url = `https://gutendex.com/books/?page=${currentPage}`;
@@ -194,6 +208,24 @@ export const initBookLoader = async () => {
         const totalPage = Math.ceil(totalResults / books.length);
         updatePagination(currentPage, totalPage);
 
+        await renderBooks(books);
+        loadWishlistIds();
+        initWishlistEventListener();
+    }
+};
+
+export const initWishlistPage = async () => {
+    const savedWishlistStr = localStorage.getItem("wishlist");
+    const ids = savedWishlistStr ? JSON.parse(savedWishlistStr) : [];
+
+    toggleLoader("show");
+    const books = await fetchBooksByIds(ids);
+    toggleLoader("hide");
+    console.log(books);
+
+    toggleError("404: No books found!", !!books ? "hide" : "show");
+
+    if (books) {
         await renderBooks(books);
         loadWishlistIds();
         initWishlistEventListener();
