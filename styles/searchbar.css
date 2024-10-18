@@ -60,3 +60,6 @@
   outline: none;
 }
 
+.searchbar-container.disable {
+  opacity: 0.5;
+}

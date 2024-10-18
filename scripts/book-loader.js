@@ -46,6 +46,18 @@ const toggleError = (msg, state = null) => {
         }
     }
 };
+const toggleSearchInput = (state) => {
+    const searchbarContainer = document.getElementById("searchbar-container");
+    const searchInput = document.getElementById("search-input");
+
+    if (state == "disable") {
+        searchbarContainer.classList.add("disable");
+        searchInput.disabled = true;
+    } else if (state == "enable") {
+        searchbarContainer.classList.remove("disable");
+        searchInput.disabled = false;
+    }
+};
 
 const updatePagination = (currentPage, totalPage) => {
     const paginationContainer = document.querySelector(".pagination-numbers");
@@ -206,10 +218,15 @@ export const initBookLoader = async () => {
     const url = currentPage == 1 ? cachedUrl : mainUrl;
 
     toggleLoader("show");
+    toggleSearchInput("disable");
     const { books, totalResults } = await fetchBooks(url);
     toggleLoader("hide");
+    toggleSearchInput("enable");
 
-    toggleError("404: No books found!", !!books ? "hide" : "show");
+    toggleError(
+        "404: No books found!",
+        !!books && books?.length ? "hide" : "show"
+    );
 
     if (books) {
         const totalPage = Math.ceil(totalResults / books.length);
@@ -226,11 +243,16 @@ export const initWishlistPage = async () => {
     const ids = savedWishlistStr ? JSON.parse(savedWishlistStr) : [];
 
     toggleLoader("show");
+    toggleSearchInput("disable");
     const books = await fetchBooksByIds(ids);
     toggleLoader("hide");
+    toggleSearchInput("enable");
     console.log(books);
 
-    toggleError("404: No books found!", !!books ? "hide" : "show");
+    toggleError(
+        "404: No books found!",
+        !!books && books?.length ? "hide" : "show"
+    );
 
     if (books) {
         await renderBooks(books);
@@ -255,7 +277,10 @@ const handleSearch = async (event) => {
     const { books, totalResults } = await fetchBooks(url);
     toggleLoader("hide");
 
-    toggleError("404: No books found!", !!books ? "hide" : "show");
+    toggleError(
+        "404: No books found!",
+        !!books && books?.length ? "hide" : "show"
+    );
 
     if (books) {
         const totalPage = Math.ceil(totalResults / books.length);
