@@ -1,0 +1,28 @@
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+.logo-text {
+    font-family: var(--font-megrim);
+    font-weight: bolder;
+    font-size  : 30px;
+    padding    : 10px 0;
+    display    : inline-block;
+}
+
+.logo {
+    font-family: var(--font-megrim);
+    font-weight: bolder;
+    font-size  : 22px;
+    padding    : 8px;
+    color: white;
+    border-radius: 100%;
+    display    : inline-block;
+    margin-right: 10px;
+}
+
+@media (width < 768px) {
+    .logo-text {
+        display: none;
+    }
+}

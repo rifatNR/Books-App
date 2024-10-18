@@ -63,11 +63,8 @@ const renderBooks = async (books) => {
     }
 };
 
-export const fetchBooks = async () => {
+export const fetchBooks = async (url) => {
     try {
-        // const url = `https://gutendex.com/books/?page=1`
-        const url = `/demo-data/demo-response.json`;
-
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
@@ -78,7 +75,12 @@ export const fetchBooks = async () => {
 };
 
 export const initBookLoader = async () => {
-    const books = await fetchBooks();
+    // const url = `https://gutendex.com/books/?page=1`;
+    const url = `/demo-data/demo-response.json`;
 
-    renderBooks(books);
+    const books = await fetchBooks(url);
+
+    if (books) {
+        renderBooks(books);
+    }
 };

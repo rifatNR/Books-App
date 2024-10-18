@@ -1,6 +1,9 @@
 :root {
     /* Colors */
     --primary: #7065CE;
+    --primary-2: #9E53FE;
+    --primary-3: #7778FE;
+    --primary-4: #42ABFE;
     --primary-light: #a8a2dc;
     --secondary-color: #ef70f6;
     --gray: #a4a0c8;
@@ -16,4 +19,5 @@
 
     /* z-index */
     --z-navbar: 100;
+    --z-loader: 99;
 }

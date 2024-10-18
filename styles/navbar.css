@@ -15,14 +15,6 @@
     justify-content: space-between;
 }
 
-.logo {
-    font-family: var(--font-megrim);
-    font-weight: bolder;
-    font-size  : 30px;
-    padding    : 10px 0;
-    display    : inline-block;
-}
-
 .navbar-right-container {
     display        : flex;
     align-items    : center;
@@ -38,7 +30,7 @@
     cursor          : pointer;
     background-color: white;
     color           : var(--primary);
-    border       : 1px solid var(--primary);
+    /* border       : 1px solid var(--primary); */
     margin-right    : 10px;
     font-size       : 20px;
     transition: all ease-in 0.2s;

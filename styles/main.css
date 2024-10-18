@@ -5,9 +5,11 @@
 @import url('./variables.css');
 @import url('./utilis.css');
 @import url('./navbar.css');
+@import url('./logo.css');
 @import url('./searchbar.css');
 @import url('./cards.css');
 @import url('./pagination.css');
+@import url('./loader.css');
 
 body {
     font-family     : var(--font-inter);
