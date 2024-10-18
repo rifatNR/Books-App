@@ -1,4 +1,9 @@
-import { initBookLoader, initWishlistPage, initSearch } from "./book-loader.js";
+import {
+    initBookLoader,
+    initWishlistPage,
+    initSearch,
+    initSingleView,
+} from "./book-loader.js";
 import { loadHTML } from "./html-loader.js";
 
 Promise.all([
@@ -20,6 +25,10 @@ Promise.all([
                 .getElementById("pagination-container")
                 ?.classList.add("hide");
         } else if (path == "/view.html") {
+            initSingleView();
+            document
+                .getElementById("searchbar-container")
+                ?.classList.add("hide");
         }
     })
     .catch((error) => {

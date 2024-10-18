@@ -117,7 +117,7 @@ const renderSingleBookCard = async (
     );
 
     const cardHTML = `
-        <a href="/view.html?id=${id}" id="card_${id}" class="card">
+        <a href="/view.html?book_id=${id}" id="card_${id}" class="card">
             <div class="card-image-container">
                 <img src="${image}" alt="">
                 <div data-id="${id}" id="wishlist_${id}" class="wishlist shadow">
@@ -240,6 +240,41 @@ export const initBookLoader = async () => {
 
 export const initSingleView = async () => {
     console.log("initSingleView");
+
+    const id = getQueryParam("book_id");
+
+    toggleLoader("show");
+    // const books = await fetchBooksByIds([id]);
+    const books = await fetch(`/cache/demo-single-book.json`).then((response) =>
+        response.json()
+    );
+    toggleLoader("hide");
+
+    toggleError(
+        "404: No books found!",
+        !!books && books?.length ? "hide" : "show"
+    );
+
+    if (books && books.length > 0) {
+        const book = books[0];
+        console.log("Single Book", book);
+
+        document.getElementById("book-id").innerHTML = "#" + book.id;
+        document.getElementById("title").innerHTML = book.title;
+        document.getElementById("download-count").innerHTML =
+            book.download_count;
+        document.getElementById("cover-image").src = book.formats["image/jpeg"];
+
+        const authorsHtml = book?.authors?.map(
+            (author) =>
+                `<div>${author?.name} <span class="author-lifespan">(${
+                    author?.birth_year ?? "-"
+                } - ${author?.death_year ?? "-"})</span></div>`
+        );
+
+        document.getElementById("book-authors").innerHTML =
+            authorsHtml?.join("");
+    }
 };
 
 export const initWishlistPage = async () => {

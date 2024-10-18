@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1259,
+        "title": "Twenty years after",
+        "authors": [
+            {
+                "name": "Dumas, Alexandre",
+                "birth_year": 1802,
+                "death_year": 1870
+            },
+            {
+                "name": "Maquet, Auguste",
+                "birth_year": 1813,
+                "death_year": 1888
+            }
+        ],
+        "translators": [],
+        "subjects": [
+            "France -- History -- Louis XIV, 1643-1715 -- Fiction"
+        ],
+        "bookshelves": [
+            "Adventure",
+            "Browsing: Culture/Civilization/Society",
+            "Browsing: Fiction",
+            "Browsing: History - General",
+            "Browsing: Literature",
+            "Historical Fiction",
+            "Movie Books"
+        ],
+        "languages": [
+            "en"
+        ],
+        "copyright": false,
+        "media_type": "Text",
+        "formats": {
+            "text/html": "https://www.gutenberg.org/ebooks/1259.html.images",
+            "application/epub+zip": "https://www.gutenberg.org/ebooks/1259.epub3.images",
+            "application/x-mobipocket-ebook": "https://www.gutenberg.org/ebooks/1259.kf8.images",
+            "application/rdf+xml": "https://www.gutenberg.org/ebooks/1259.rdf",
+            "image/jpeg": "https://www.gutenberg.org/cache/epub/1259/pg1259.cover.medium.jpg",
+            "application/octet-stream": "https://www.gutenberg.org/files/1259/1259-0.zip",
+            "text/plain; charset=us-ascii": "https://www.gutenberg.org/ebooks/1259.txt.utf-8"
+        },
+        "download_count": 30937
+    }
+]
