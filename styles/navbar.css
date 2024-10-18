@@ -37,20 +37,20 @@
     border-radius   : 5px;
     cursor          : pointer;
     background-color: white;
-    color           : var(--primary-color);
-    border       : 1px solid var(--primary-color);
+    color           : var(--primary);
+    border       : 1px solid var(--primary);
     margin-right    : 10px;
     font-size       : 20px;
     transition: all ease-in 0.2s;
 }
 
 .navbar-wishlist-icon:hover {
-    background-color           : var(--primary-color);
+    background-color           : var(--primary);
     color: white;
 }
 
 .navbar-wishlist-text {
     font-size: 15px;
-    color    : var(--primary-color);
+    color    : var(--primary);
 
 }

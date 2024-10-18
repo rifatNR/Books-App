@@ -7,6 +7,7 @@
 @import url('./navbar.css');
 @import url('./searchbar.css');
 @import url('./cards.css');
+@import url('./pagination.css');
 
 body {
     font-family     : var(--font-inter);
