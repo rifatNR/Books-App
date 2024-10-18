@@ -244,10 +244,10 @@ export const initSingleView = async () => {
     const id = getQueryParam("book_id");
 
     toggleLoader("show");
-    // const books = await fetchBooksByIds([id]);
-    const books = await fetch(`/cache/demo-single-book.json`).then((response) =>
-        response.json()
-    );
+    const books = await fetchBooksByIds([id]);
+    // const books = await fetch(`/cache/demo-single-book.json`).then((response) =>
+    //     response.json()
+    // );
     toggleLoader("hide");
 
     toggleError(
@@ -263,17 +263,42 @@ export const initSingleView = async () => {
         document.getElementById("title").innerHTML = book.title;
         document.getElementById("download-count").innerHTML =
             book.download_count;
+        document.getElementById("language").innerHTML = book.languages[0];
         document.getElementById("cover-image").src = book.formats["image/jpeg"];
+        document.getElementById("book-iframe").src = book.formats["text/html"];
 
+        // ! Author
         const authorsHtml = book?.authors?.map(
             (author) =>
                 `<div>${author?.name} <span class="author-lifespan">(${
                     author?.birth_year ?? "-"
                 } - ${author?.death_year ?? "-"})</span></div>`
         );
-
         document.getElementById("book-authors").innerHTML =
             authorsHtml?.join("");
+
+        // ! Subjects
+        const subjectsHtml = book?.subjects?.map(
+            (subject) => `<li>${subject}</li>`
+        );
+        document.getElementById("subjects-list").innerHTML =
+            subjectsHtml?.join("");
+        if (book?.subjects?.length == 0) addClass("#subjects", ["hide"]);
+
+        // ! Awards
+        const awardsHtml = book?.bookshelves?.map(
+            (award) => `<li>${award}</li>`
+        );
+        document.getElementById("awards-list").innerHTML = awardsHtml?.join("");
+        if (book?.bookshelves?.length == 0) addClass("#awards", ["hide"]);
+
+        // ! Translators
+        const translatorsHtml = book?.translators?.map(
+            (translator) => `<li>${translator}</li>`
+        );
+        document.getElementById("translators-list").innerHTML =
+            translatorsHtml?.join("");
+        if (book?.translators?.length == 0) addClass("#translators", ["hide"]);
     }
 };
 

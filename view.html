@@ -11,7 +11,7 @@
 <body>
     <header id="navbar"></header>
     <main class="container main-body">
-        <div id="loader" class="loader-container hide">
+        <div id="loader" class="loader-container">
             <div class="loader">Loading Books...</div>
         </div>
         <div id="error" class="error-container hide">
@@ -28,7 +28,7 @@
               <div class="book-details">
                 <div class="book-meta">
                   <div id="book-id" class="book-id">#12398</div>
-                  <div class="book-language">EN</div>
+                  <div id="language" class="book-language">EN</div>
                 </div>
                 <div class="book-title-section">
                   <div id="title" class="book-title">A Game of Thrones</div>
@@ -42,15 +42,17 @@
                     Total Downloads: <span id="download-count">27677</span>
                 </div>
                 
-                <div class="book-subjects-title">Subjects:</div>
-                <ul class="book-subjects-list">
-                  <li>England -- Fiction</li>
-                  <li>Female friendship -- Fiction</li>
-                  <li>Older women -- Fiction</li>
-                  <li>Pastoral fiction</li>
-                  <li>Sisters -- Fiction</li>
-                  <li>Villages -- Fiction</li>
-                </ul>
+                <div id="subjects">
+                    <div class="book-subjects-title">Subjects:</div>
+                    <ul id="subjects-list" class="book-subjects-list">
+                        <li>England -- Fiction</li>
+                        <li>Female friendship -- Fiction</li>
+                        <li>Older women -- Fiction</li>
+                        <li>Pastoral fiction</li>
+                        <li>Sisters -- Fiction</li>
+                        <li>Villages -- Fiction</li>
+                    </ul>
+                </div>
                 
                 <div class="book-actions">
                   <a href="/" target="_blank" class="download-epub">Download ePub</a>
@@ -59,30 +61,30 @@
               </div>
             </div>
         
-            <div class="additional-info">
+            <div id="awards" class="additional-info">
               <div class="awards">
                 <div class="awards-title">
                     🏆 Awards:
                 </div>
-                <ul class="awards-list">
+                <ul id="awards-list" class="awards-list">
                   <li>Browsing: Culture/Civilization/Society</li>
                   <li>Browsing: Fiction</li>
                   <li>Browsing: Literature</li>
                 </ul>
               </div>
         
-              <div class="translators">
+              <div id="translators" class="translators">
                 <div class="translators-title">
                     <i class="fa-solid fa-language"></i>
                     <span>Translators:</span>
                 </div>
-                <ul class="translators-list">
+                <ul id="translators-list" class="translators-list">
                   <li>N/A</li>
                 </ul>
               </div>
             </div>
         
-            <iframe class="book-iframe" src="https://www.gutenberg.org/cache/epub/394/pg394-images.html" frameborder="0"></iframe>
+            <iframe id="book-iframe" class="book-iframe" src="" frameborder="0"></iframe>
         </div>
         
     </main>

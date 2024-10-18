@@ -4,6 +4,7 @@ import {
     initSearch,
     initSingleView,
 } from "./book-loader.js";
+import { addClass } from "./helper.js";
 import { loadHTML } from "./html-loader.js";
 
 Promise.all([
@@ -21,14 +22,10 @@ Promise.all([
             initBookLoader();
         } else if (path == "/wishlist.html") {
             initWishlistPage();
-            document
-                .getElementById("pagination-container")
-                ?.classList.add("hide");
+            addClass("#pagination-container", ["hide"]);
         } else if (path == "/view.html") {
             initSingleView();
-            document
-                .getElementById("searchbar-container")
-                ?.classList.add("hide");
+            addClass("#searchbar-container", ["hide"]);
         }
     })
     .catch((error) => {

@@ -16,10 +16,15 @@
     margin-bottom        : 40px;
 }
 
+.book-cover {
+    display: flex;
+    width: 100%;
+}
 .book-cover-image {
     display    : flex;
     align-items: flex-end;
     min-height : 350px;
+    width: 100%;
 }
 
 .book-cover img {
