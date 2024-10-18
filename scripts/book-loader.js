@@ -5,6 +5,7 @@ import {
     addClass,
     getQueryParam,
 } from "./helper.js";
+import { initWishlistEventListener, loadWishlistIds } from "./wishlist.js";
 
 const toggleLoader = (state = null) => {
     const loaderEl = document.getElementById("loader");
@@ -91,7 +92,13 @@ const updatePagination = (currentPage, totalPage) => {
     }
 };
 
-const renderSingleBookCard = (id, title, image, authors, totalDownload) => {
+const renderSingleBookCard = async (
+    id,
+    title,
+    image,
+    authors,
+    totalDownload
+) => {
     const authorsHtml = authors?.map(
         (author) => `<div class="card-subtitle truncate">${author?.name}</div>`
     );
@@ -100,8 +107,8 @@ const renderSingleBookCard = (id, title, image, authors, totalDownload) => {
         <div id="card_${id}" class="card">
             <div class="card-image-container">
                 <img src="${image}" alt="">
-                <div class="wishlist-icon shadow">
-                    <i class="fa-regular fa-heart"></i>
+                <div data-id="${id}" id="wishlist_${id}" class="wishlist shadow">
+                    <i class="fa-regular fa-heart pointer-none"></i>
                 </div>
             </div>
             <div class="card-texts-container">
@@ -138,7 +145,7 @@ const renderBooks = async (books) => {
         const image = book.formats["image/jpeg"];
         const totalDownload = formatLargeNumber(download_count);
 
-        const cardHTML = renderSingleBookCard(
+        const cardHTML = await renderSingleBookCard(
             id,
             title,
             image,
@@ -187,6 +194,8 @@ export const initBookLoader = async () => {
     toggleError("404: No books found!", !!books ? "hide" : "show");
 
     if (books) {
-        renderBooks(books);
+        await renderBooks(books);
+        loadWishlistIds();
+        initWishlistEventListener();
     }
 };

@@ -67,7 +67,7 @@
     width    : 100%;
 }
 
-.wishlist-icon {
+.wishlist {
     position        : absolute;
     top             : 5px;
     right           : 5px;
@@ -80,9 +80,10 @@
     cursor          : pointer;
     background-color: white;
     color           : var(--primary);
+    border: none;
 }
 
-.wishlist-icon.active {
+.wishlist.active {
     background-color: var(--primary);
     color           : white;
 }
