@@ -35,3 +35,8 @@ export const addClass = (identifier, classes) => {
         element.classList.add(cssClass);
     }
 };
+
+export const getQueryParam = (param) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+};

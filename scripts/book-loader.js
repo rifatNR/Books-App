@@ -1,4 +1,10 @@
-import { delay, createElement, formatLargeNumber, addClass } from "./helper.js";
+import {
+    delay,
+    createElement,
+    formatLargeNumber,
+    addClass,
+    getQueryParam,
+} from "./helper.js";
 
 const toggleLoader = (state = null) => {
     const loaderEl = document.getElementById("loader");
@@ -15,6 +21,52 @@ const toggleLoader = (state = null) => {
         } else if (state == "show") {
             loaderEl.classList.remove("hide");
         }
+    }
+};
+
+const updatePagination = (currentPage, totalPage) => {
+    const paginationContainer = document.querySelector(".pagination-numbers");
+    const prevButton = document.querySelector(".pagination-link.prev");
+    const nextButton = document.querySelector(".pagination-link.next");
+
+    paginationContainer.innerHTML = "";
+
+    if (currentPage > 1) {
+        prevButton.style.display = "inline-flex";
+        prevButton.href = `?page=${currentPage - 1}`;
+    } else {
+        prevButton.style.display = "none";
+    }
+
+    if (currentPage < totalPage) {
+        nextButton.style.display = "inline-flex";
+        nextButton.href = `?page=${currentPage + 1}`;
+    } else {
+        nextButton.style.display = "none";
+    }
+
+    // ! Calculate the start and end page numbers (with 2-page offset)
+    const startPage = Math.max(currentPage - 2, 1);
+    const endPage = Math.min(currentPage + 2, totalPage);
+
+    console.table({
+        currentPage,
+        totalPage,
+        startPage,
+        endPage,
+    });
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageLink = document.createElement("a");
+        pageLink.href = `?page=${i}`;
+        pageLink.textContent = i;
+        pageLink.classList.add("pagination-link");
+
+        if (i === currentPage) {
+            pageLink.classList.add("active");
+        }
+
+        paginationContainer.appendChild(pageLink);
     }
 };
 
@@ -86,19 +138,30 @@ export const fetchBooks = async (url) => {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
-        return data?.results;
+        return {
+            books: data?.results,
+            totalResults: data?.count,
+        };
     } catch (error) {
         console.error("Error fetching data:", error);
+        return {
+            books: null,
+            totalResults: 0,
+        };
     }
 };
 
 export const initBookLoader = async () => {
-    const url = `https://gutendex.com/books/?page=1`;
+    const currentPage = parseInt(getQueryParam("page") ?? 1);
+    const url = `https://gutendex.com/books/?page=${currentPage}`;
     // const url = `/demo-data/demo-response.json`;
 
     toggleLoader("show");
-    const books = await fetchBooks(url);
+    const { books, totalResults } = await fetchBooks(url);
     toggleLoader("hide");
+
+    const totalPage = Math.ceil(totalResults / books.length);
+    updatePagination(currentPage, totalPage);
 
     if (books) {
         renderBooks(books);
