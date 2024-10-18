@@ -14,11 +14,12 @@ Promise.all([
 
         if (path == "/") {
             initBookLoader();
-        } else if ("/wishlist.html") {
+        } else if (path == "/wishlist.html") {
             initWishlistPage();
             document
                 .getElementById("pagination-container")
                 ?.classList.add("hide");
+        } else if (path == "/view.html") {
         }
     })
     .catch((error) => {

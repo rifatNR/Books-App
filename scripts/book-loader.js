@@ -214,7 +214,7 @@ export const initBookLoader = async () => {
     const currentPage = parseInt(getQueryParam("page") ?? 1);
 
     const mainUrl = `https://gutendex.com/books/?page=${currentPage}`;
-    const cachedUrl = `/demo-data/demo-response.json`;
+    const cachedUrl = `/cache/first-page.json`;
     const url = currentPage == 1 ? cachedUrl : mainUrl;
 
     toggleLoader("show");
@@ -236,6 +236,10 @@ export const initBookLoader = async () => {
         loadWishlistIds();
         initWishlistEventListener();
     }
+};
+
+export const initSingleView = async () => {
+    console.log("initSingleView");
 };
 
 export const initWishlistPage = async () => {

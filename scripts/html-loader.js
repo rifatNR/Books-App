@@ -7,6 +7,9 @@ export const loadHTML = (containerId, file) => {
             return response.text();
         })
         .then((data) => {
-            document.getElementById(containerId).innerHTML = data;
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.innerHTML = data;
+            }
         });
 };
