@@ -1,5 +1,23 @@
 import { delay, createElement, formatLargeNumber, addClass } from "./helper.js";
 
+const toggleLoader = (state = null) => {
+    const loaderEl = document.getElementById("loader");
+    if (!state) {
+        const isHidden = loaderEl.classList.contains("hide");
+        if (isHidden) {
+            loaderEl.classList.remove("hide");
+        } else {
+            loaderEl.classList.add("hide");
+        }
+    } else {
+        if (state == "hide") {
+            loaderEl.classList.add("hide");
+        } else if (state == "show") {
+            loaderEl.classList.remove("hide");
+        }
+    }
+};
+
 const renderSingleBookCard = (id, title, image, authors, totalDownload) => {
     const authorsHtml = authors?.map(
         (author) => `<div class="card-subtitle truncate">${author?.name}</div>`
@@ -75,10 +93,12 @@ export const fetchBooks = async (url) => {
 };
 
 export const initBookLoader = async () => {
-    // const url = `https://gutendex.com/books/?page=1`;
-    const url = `/demo-data/demo-response.json`;
+    const url = `https://gutendex.com/books/?page=1`;
+    // const url = `/demo-data/demo-response.json`;
 
+    toggleLoader("show");
     const books = await fetchBooks(url);
+    toggleLoader("hide");
 
     if (books) {
         renderBooks(books);

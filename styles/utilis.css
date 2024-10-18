@@ -24,3 +24,7 @@
 .gradient {
     background: linear-gradient(17deg, #aa47fe, #7e71fe 81%);
 }
+
+.hide {
+    display: none !important;
+}
