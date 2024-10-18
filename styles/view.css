@@ -1,0 +1,155 @@
+.view-container {
+    max-width       : 1024px;
+    margin          : 0 auto;
+    background-color: #e7e7e7;
+    padding         : 20px;
+    padding-top     : 20px;
+    margin-top      : -30px;
+    font-family: var(--font-nunito);
+}
+
+.book-section {
+    display              : grid;
+    grid-template-columns: 1fr 2fr;
+    gap                  : 50px;
+    margin-bottom        : 40px;
+}
+
+.book-cover-image {
+    display    : flex;
+    align-items: flex-end;
+    min-height : 350px;
+}
+
+.book-cover img {
+    width: 100%;
+}
+
+.book-details {
+    display       : flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+.book-meta {
+    display    : flex;
+    align-items: center;
+    gap        : 10px;
+}
+
+.book-id {
+    font-size  : 1.25rem;
+    font-weight: bold;
+}
+
+.book-language {
+    background-color: #fbbf24;
+    padding         : 4px 8px;
+    font-size       : 0.875rem;
+    font-weight     : bold;
+    color           : black;
+    border-radius   : 4px;
+}
+
+.book-title-section {
+    display    : flex;
+    align-items: center;
+    gap        : 10px;
+}
+
+.book-title {
+    font-size    : 2rem;
+    font-weight  : bold;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    color     : #9ca3af;
+    font-size : 1.25rem;
+    margin-top: -20px;
+}
+
+.book-author {
+    font-size    : 1.25rem;
+    color        : var(--primary);
+    margin-bottom: 20px;
+}
+
+.author-lifespan {
+    font-size: 0.875rem;
+    color    : black;
+}
+
+.book-subjects-title {
+    font-size    : 1.125rem;
+    font-weight  : bold;
+    margin-bottom: 10px;
+}
+
+.book-subjects-list {
+    list-style-type: decimal;
+    margin-bottom  : 20px;
+}
+
+.book-actions {
+    display: flex;
+    gap    : 10px;
+}
+
+.download-epub,
+.download-ebook {
+    padding      : 10px 20px;
+    font-size    : 1rem;
+    font-weight  : bold;
+    border       : none;
+    cursor       : pointer;
+    border-radius: 5px;
+}
+
+.download-epub {
+    background-color: var(--primary-2);
+    color           : white;
+}
+
+.download-ebook {
+    background-color: #fbbf24;
+    color           : black;
+}
+
+.additional-info {
+    margin-bottom: 40px;
+}
+
+.total-downloads {
+    font-size    : 1.125rem;
+    font-weight  : bold;
+    margin-bottom: 20px;
+}
+
+.awards,
+.translators {
+    margin-bottom: 20px;
+}
+
+.awards-title,
+.translators-title {
+    font-size    : 1.125rem;
+    font-weight  : bold;
+    margin-bottom: 10px;
+}
+
+.awards-list,
+.translators-list {
+    list-style-type: decimal;
+}
+
+.book-iframe {
+    width     : 100%;
+    min-height: 100vh;
+    margin-top: 40px;
+    background-color: white;
+}
+
+.trophy-icon {
+    color: #f5ca5e;
+}
