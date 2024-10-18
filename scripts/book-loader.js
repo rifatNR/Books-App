@@ -23,6 +23,27 @@ const toggleLoader = (state = null) => {
         }
     }
 };
+const toggleError = (msg, state = null) => {
+    const errorEl = document.getElementById("error");
+    const errorMsgEl = document.getElementById("error-msg");
+
+    errorMsgEl.innerHTML = msg ?? "Something went wrong!!";
+
+    if (!state) {
+        const isHidden = errorEl.classList.contains("hide");
+        if (isHidden) {
+            errorEl.classList.remove("hide");
+        } else {
+            errorEl.classList.add("hide");
+        }
+    } else {
+        if (state == "hide") {
+            errorEl.classList.add("hide");
+        } else if (state == "show") {
+            errorEl.classList.remove("hide");
+        }
+    }
+};
 
 const updatePagination = (currentPage, totalPage) => {
     const paginationContainer = document.querySelector(".pagination-numbers");
@@ -162,6 +183,8 @@ export const initBookLoader = async () => {
 
     const totalPage = Math.ceil(totalResults / books.length);
     updatePagination(currentPage, totalPage);
+
+    toggleError("404: No books found!", !!books ? "hide" : "show");
 
     if (books) {
         renderBooks(books);

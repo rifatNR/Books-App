@@ -9,6 +9,7 @@
 @import url('./searchbar.css');
 @import url('./cards.css');
 @import url('./pagination.css');
+@import url('./error-page.css');
 @import url('./loader.css');
 
 body {

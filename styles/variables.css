@@ -20,4 +20,5 @@
     /* z-index */
     --z-navbar: 100;
     --z-loader: 99;
+    --z-error: 98;
 }

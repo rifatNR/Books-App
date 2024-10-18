@@ -6,13 +6,16 @@
   <link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
   <script src="https://kit.fontawesome.com/f868734c05.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/styles/main.css">
-  <title>Zepto Books</title>
+  <title>Zeptop Shelf</title>
 </head>
 <body>
     <header id="navbar"></header>
     <main class="container main-body">
-        <div id="loader" class="loader-container">
+        <div id="loader" class="loader-container hide">
             <div class="loader">Loading Books...</div>
+        </div>
+        <div id="error" class="error-container hide">
+            <div id="error-msg" class="error-msg">Something went wrong!</div>
         </div>
         <section id="card-container" class="card-container"></section>
         <div id="pagination-container" class="pagination-container"></div>
