@@ -37,6 +37,16 @@
     gap: 16px;
 }
 
+@media (width < 768px) {
+    .pagination {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .pagination-numbers {
+        display: none !important;
+    }
+}
+
 .prev, .next {
     display: flex;
     align-items: center;

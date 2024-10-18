@@ -2,3 +2,6 @@ GET https://gutendex.com/books/
 
 ###
 GET https://gutendex.com/books/?page=2327
+
+###
+GET https://gutendex.com/books/1259
