@@ -266,6 +266,10 @@ export const initSingleView = async () => {
         document.getElementById("language").innerHTML = book.languages[0];
         document.getElementById("cover-image").src = book.formats["image/jpeg"];
         document.getElementById("book-iframe").src = book.formats["text/html"];
+        document.getElementById("epub-download").href =
+            book.formats["application/epub+zip"];
+        document.getElementById("ebook-download").href =
+            book.formats["application/x-mobipocket-ebook"];
 
         // ! Author
         const authorsHtml = book?.authors?.map(
