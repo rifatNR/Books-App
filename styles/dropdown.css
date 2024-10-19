@@ -6,6 +6,7 @@
 
 .dropdown-content {
     position: absolute;
+    margin-top: 5px;
     right: 7px;
     background-color: #f1f1f1;
     min-width: 260px;
@@ -13,7 +14,7 @@
     z-index: 1;
     background: white;
     border: 1px solid var(--gray);
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     max-height: 50vh;
     overflow-y: scroll;
@@ -28,4 +29,10 @@
 
 .dropdown-content .dropdown-option:hover {
     background-color: #ddd;
+}
+
+@media (width < 768px) {
+    .dropdown-content {
+        right: 0px;
+    }
 }
