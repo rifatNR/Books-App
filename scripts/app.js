@@ -4,7 +4,7 @@ import {
     initSearch,
     initSingleView,
 } from "./book-loader.js";
-import { delay, showToastr } from "./helper.js";
+import { addClass, delay, showToastr } from "./helper.js";
 import { loadHTML } from "./html-loader.js";
 
 const path = window.location.pathname;
@@ -57,6 +57,7 @@ Promise.all(htmlToLoad)
             initWishlistPage();
         } else if (path == "/view.html") {
             initSingleView();
+            addClass("#searchbar-container", ["hide"]);
         }
     })
     .catch((error) => {
