@@ -391,7 +391,6 @@ export const initEventListener = async () => {
     // ! Close the dropdown if the user clicks outside of it
     window.onclick = function (event) {
         if (!event.target.matches("#filter-button")) {
-            console.log("------------------");
             addClass("#dropdown-content", ["hide"]);
         }
     };
