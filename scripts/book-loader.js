@@ -194,6 +194,7 @@ const fetchBooksByIds = async (ids) => {
 
 export const initBookLoader = async () => {
     addClass("#search-query-container", ["hide"]);
+    removeClass("#pagination-container", ["hide"]);
 
     const currentPage = parseInt(getQueryParam("page") ?? 1);
 
@@ -321,6 +322,7 @@ const handleSearch = async (event) => {
         return;
     }
 
+    addClass("#pagination-container", ["hide"]);
     removeClass("#search-query-container", ["hide"]);
     setInnerHtml("#search-query", `"${query}"`);
 
