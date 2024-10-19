@@ -295,7 +295,7 @@ const search = async (query, genre) => {
 
     addClass("#pagination-container", ["hide"]);
     removeClass("#search-query-container", ["hide"]);
-    setInnerHtml("#search-query", `"${query}"`);
+    setInnerHtml("#search-query", `"${query || genre}"`);
 
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
