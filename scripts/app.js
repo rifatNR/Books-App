@@ -10,6 +10,8 @@ import { loadHTML } from "./html-loader.js";
 
 const path = window.location.pathname;
 
+console.log("Hey Im Running...");
+
 let htmlToLoad = [
     loadHTML("navbar", "/components/navbar.html"),
     loadHTML("loading-container", "/components/loader.html"),
