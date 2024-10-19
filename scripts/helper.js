@@ -123,3 +123,8 @@ export const debounce = (func, delay) => {
         }, delay);
     };
 };
+
+export const replaceHttpWithHttps = (url) => {
+    if (url === null) return "";
+    return url.replace(/http:\/\//g, "https://");
+};

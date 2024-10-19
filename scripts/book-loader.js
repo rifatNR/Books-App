@@ -10,6 +10,7 @@ import {
     toggleLoader,
     toggleError,
     setInnerHtml,
+    replaceHttpWithHttps,
 } from "./helper.js";
 import { initWishlistEventListener, loadWishlistIds } from "./wishlist.js";
 
@@ -249,7 +250,9 @@ export const initSingleView = async () => {
             book.download_count;
         document.getElementById("language").innerHTML = book.languages[0];
         document.getElementById("cover-image").src = book.formats["image/jpeg"];
-        document.getElementById("book-iframe").src = book.formats["text/html"];
+        document.getElementById("book-iframe").src = replaceHttpWithHttps(
+            book.formats["text/html"]
+        );
         document.getElementById("epub-download").href =
             book.formats["application/epub+zip"];
         document.getElementById("ebook-download").href =
