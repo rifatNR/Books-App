@@ -35,14 +35,18 @@ export const initWishlistEventListener = () => {
             console.log(`Wishlist ID: ${id}`);
             if (!id) return;
 
+            const fullDataStr = event.target.getAttribute("data-full");
+
             if (button.classList.contains("active")) {
                 removeFromWishlist(id);
                 showToastr("❌ Removed from wishlist.");
                 updateWishlistButton(id, false);
+                localStorage.removeItem(`wishlist_[${id}]`);
             } else {
                 saveToWishlist(id);
                 showToastr("✅ Added to wishlist.");
                 updateWishlistButton(id, true);
+                localStorage.setItem(`wishlist_[${id}]`, fullDataStr);
             }
         });
     });

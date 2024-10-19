@@ -93,7 +93,8 @@ const renderSingleBookCard = async (
     title,
     image,
     authors,
-    totalDownload
+    totalDownload,
+    fullBookData
 ) => {
     const authorsHtml = authors?.map(
         (author) => `<div class="card-subtitle truncate">${author?.name}</div>`
@@ -103,7 +104,9 @@ const renderSingleBookCard = async (
         <a href="/view.html?book_id=${id}" id="card_${id}" class="card">
             <div class="card-image-container">
                 <img src="${image}" alt="">
-                <div data-id="${id}" id="wishlist_${id}" class="wishlist shadow">
+                <div data-id="${id}" data-full=${JSON.stringify(
+        fullBookData
+    )} id="wishlist_${id}" class="wishlist shadow">
                     <i class="fa-regular fa-heart pointer-none"></i>
                 </div>
             </div>
@@ -147,7 +150,8 @@ const renderBooks = async (books) => {
             title,
             image,
             authors,
-            totalDownload
+            totalDownload,
+            book
         );
         const newCard = createElement(cardHTML);
         cardContainer.appendChild(newCard);
