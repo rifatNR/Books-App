@@ -60,11 +60,20 @@ const toggleSearchInput = (state) => {
 };
 
 const updatePagination = (currentPage, totalPage) => {
-    const paginationContainer = document.querySelector(".pagination-numbers");
+    const paginationContainer = document.querySelector("#pagination");
+    const paginationNumbersContainer = document.querySelector(
+        "#pagination-numbers"
+    );
     const prevButton = document.querySelector(".pagination-link.prev");
     const nextButton = document.querySelector(".pagination-link.next");
 
-    paginationContainer.innerHTML = "";
+    paginationNumbersContainer.innerHTML = "";
+
+    if (currentPage == totalPage) {
+        paginationContainer.classList.add("hide");
+    } else {
+        paginationContainer.classList.remove("hide");
+    }
 
     const baseSearchParams = window.location.search;
     const newParams = new URLSearchParams(baseSearchParams);
@@ -107,7 +116,7 @@ const updatePagination = (currentPage, totalPage) => {
             pageLink.classList.add("active");
         }
 
-        paginationContainer.appendChild(pageLink);
+        paginationNumbersContainer.appendChild(pageLink);
     }
 };
 
@@ -343,7 +352,10 @@ const handleSearch = async (event) => {
         return;
     }
 
-    // const currentPage = parseInt(getQueryParam("page") ?? 1);
+    const cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = "";
+
+    const currentPage = parseInt(getQueryParam("page") ?? 1);
     const url = `https://gutendex.com/books/?search=${query}`;
 
     toggleLoader("show");
@@ -357,7 +369,7 @@ const handleSearch = async (event) => {
 
     if (books) {
         const totalPage = Math.ceil(totalResults / books.length);
-        // updatePagination(currentPage, totalPage);
+        updatePagination(currentPage, totalPage);
 
         await renderBooks(books);
         loadWishlistIds();
