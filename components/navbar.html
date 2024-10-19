@@ -21,15 +21,37 @@
                   <i class="searchbar-icon-text fa-solid fa-magnifying-glass"></i>
                 </div>
                 <input id="search-input" class="searchbar-input-field" type="search" placeholder="Search..." />
+
                 <div class="dropdown">
-                    <button id="filter-button" class="searchbar-icon searchbar-right-icon">
+                    <button id="filter-dropdown-button" class="drpdwn searchbar-icon searchbar-right-icon">
                       <i class="searchbar-icon-text pointer-none fa-solid fa-bars"></i>
                     </button>
                     <input id="selected-genre" type="hidden">
-                    <div id="dropdown-content" class="dropdown-content hide">
-                        <div class="dropdown-option">Link 1</div>
-                        <div class="dropdown-option">Link 2</div>
-                        <div class="dropdown-option">Link 3</div>
+                    <div id="dropdown-content" class="drpdwn dropdown-content hide">
+                        <div class="dropdown-title">
+                            <i class="fa-solid fa-filter"></i>
+                            Filter Books
+                        </div>
+
+                        <div class="dropdown-option">
+                            <div class="drpdwn dropdown-label">
+                                Title
+                            </div>
+                            <input id="filter-query-input" class="drpdwn dropdown-input-field" type="search" placeholder="Enter book title..." />
+                        </div>
+                        
+                        <div class="dropdown-option">
+                            <div class="drpdwn dropdown-label">
+                                Genre/Topic
+                            </div>
+                            <input id="filter-genre-input" class="drpdwn dropdown-input-field" type="search" placeholder="Enter book genre..." />
+                        </div>
+
+                        <button id="filter-button" class="filter-button">
+                            <i class="fa-solid fa-filter"></i>
+                            Filter
+                        </button>
+                        
                     </div>
                 </div>
             </div>

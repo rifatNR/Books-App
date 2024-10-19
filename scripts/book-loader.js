@@ -354,11 +354,9 @@ const search = async (query, genre) => {
     }
 };
 
-const handleGenreClick = (genre) => {
-    const selectedGenreInput = document.getElementById("selected-genre");
-    selectedGenreInput.value = genre;
-
-    const query = document.getElementById("search-input")?.value;
+const handleFilter = () => {
+    const query = document.getElementById("filter-query-input")?.value;
+    const genre = document.getElementById("filter-genre-input")?.value;
     search(query, genre);
 };
 
@@ -370,47 +368,50 @@ export const handleSearchInput = (e) => {
         return;
     }
 
-    const genre = document.getElementById("selected-genre")?.value;
-    search(query, genre);
+    search(query);
 };
 
 export const loadGenres = async () => {
-    try {
-        const response = await fetch("/cache/genres.json");
-        const data = await response.json();
-
-        const dropdownContent = document.getElementById("dropdown-content");
-
-        dropdownContent.innerHTML = "";
-
-        data.forEach((genre) => {
-            const optionDiv = document.createElement("div");
-            optionDiv.classList.add("dropdown-option");
-            optionDiv.textContent = genre;
-
-            optionDiv.addEventListener("click", () => handleGenreClick(genre));
-
-            dropdownContent.appendChild(optionDiv);
-        });
-    } catch (error) {
-        console.error("Error loading genres:", error);
-    }
+    // try {
+    //     const response = await fetch("/cache/genres.json");
+    //     const data = await response.json();
+    //     const dropdownContent = document.getElementById("dropdown-content");
+    //     dropdownContent.innerHTML = "";
+    //     data.forEach((genre) => {
+    //         const optionDiv = document.createElement("div");
+    //         optionDiv.classList.add("dropdown-option");
+    //         optionDiv.textContent = genre;
+    //         optionDiv.addEventListener("click", () => handleGenreClick(genre));
+    //         dropdownContent.appendChild(optionDiv);
+    //     });
+    // } catch (error) {
+    //     console.error("Error loading genres:", error);
+    // }
 };
 
 export const initEventListener = async () => {
     const searchInput = document.getElementById("search-input");
     searchInput?.addEventListener("input", debounce(handleSearchInput, 1000));
 
+    const filterDropdownButton = document.getElementById(
+        "filter-dropdown-button"
+    );
+    filterDropdownButton?.addEventListener("click", () => {
+        removeClass("#dropdown-content", ["hide"]);
+        addClass("#search-input", ["hide"]);
+    });
+
     const filterButton = document.getElementById("filter-button");
     filterButton?.addEventListener("click", () => {
-        // showToastr("⚠️ Gutendex API has No available genre options. ⚠️");
-        removeClass("#dropdown-content", ["hide"]);
+        showToastr("⚠️ Working on it ⚠️");
+        handleFilter();
     });
 
     // ! Close the dropdown if the user clicks outside of it
     window.onclick = function (event) {
-        if (!event.target.matches("#filter-button")) {
+        if (!event.target.matches(".drpdwn")) {
             addClass("#dropdown-content", ["hide"]);
+            removeClass("#search-input", ["hide"]);
         }
     };
 };
