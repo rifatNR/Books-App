@@ -63,3 +63,14 @@
 .searchbar-container.disable {
   opacity: 0.5;
 }
+
+.search-query-msg {
+  font-family: var(--font-nunito);
+  color: gray;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.search-query {
+  color: black;
+}

@@ -3,58 +3,16 @@ import {
     createElement,
     formatLargeNumber,
     addClass,
+    removeClass,
     getQueryParam,
     debounce,
+    showToastr,
+    toggleLoader,
+    toggleError,
+    setInnerHtml,
 } from "./helper.js";
 import { initWishlistEventListener, loadWishlistIds } from "./wishlist.js";
 
-export const showToastr = (msg) => {
-    const toastr = document.getElementById("toastr");
-    if (!toastr) return;
-    toastr.innerHTML = msg;
-    toastr.classList.add("show");
-    setTimeout(() => {
-        toastr.classList.remove("show");
-    }, 3000);
-};
-const toggleLoader = (state = null) => {
-    const loaderEl = document.getElementById("loader");
-    if (!state) {
-        const isHidden = loaderEl?.classList.contains("hide");
-        if (isHidden) {
-            loaderEl?.classList.remove("hide");
-        } else {
-            loaderEl?.classList.add("hide");
-        }
-    } else {
-        if (state == "hide") {
-            loaderEl?.classList.add("hide");
-        } else if (state == "show") {
-            loaderEl?.classList.remove("hide");
-        }
-    }
-};
-const toggleError = (msg, state = null) => {
-    const errorEl = document.getElementById("error");
-    const errorMsgEl = document.getElementById("error-msg");
-
-    errorMsgEl.innerHTML = msg ?? "Something went wrong!!";
-
-    if (!state) {
-        const isHidden = errorEl.classList.contains("hide");
-        if (isHidden) {
-            errorEl.classList.remove("hide");
-        } else {
-            errorEl.classList.add("hide");
-        }
-    } else {
-        if (state == "hide") {
-            errorEl.classList.add("hide");
-        } else if (state == "show") {
-            errorEl.classList.remove("hide");
-        }
-    }
-};
 const toggleSearchInput = (state) => {
     const searchbarContainer = document.getElementById("searchbar-container");
     const searchInput = document.getElementById("search-input");
@@ -235,6 +193,8 @@ const fetchBooksByIds = async (ids) => {
 };
 
 export const initBookLoader = async () => {
+    addClass("#search-query-container", ["hide"]);
+
     const currentPage = parseInt(getQueryParam("page") ?? 1);
 
     const mainUrl = `https://gutendex.com/books/?page=${currentPage}`;
@@ -360,6 +320,9 @@ const handleSearch = async (event) => {
         initBookLoader();
         return;
     }
+
+    removeClass("#search-query-container", ["hide"]);
+    setInnerHtml("#search-query", `"${query}"`);
 
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";

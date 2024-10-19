@@ -22,6 +22,54 @@ export const formatLargeNumber = (num) => {
     }
 };
 
+export const showToastr = (msg) => {
+    const toastr = document.getElementById("toastr");
+    if (!toastr) return;
+    toastr.innerHTML = msg;
+    toastr.classList.add("show");
+    setTimeout(() => {
+        toastr.classList.remove("show");
+    }, 3000);
+};
+export const toggleLoader = (state = null) => {
+    const loaderEl = document.getElementById("loader");
+    if (!state) {
+        const isHidden = loaderEl?.classList.contains("hide");
+        if (isHidden) {
+            loaderEl?.classList.remove("hide");
+        } else {
+            loaderEl?.classList.add("hide");
+        }
+    } else {
+        if (state == "hide") {
+            loaderEl?.classList.add("hide");
+        } else if (state == "show") {
+            loaderEl?.classList.remove("hide");
+        }
+    }
+};
+export const toggleError = (msg, state = null) => {
+    const errorEl = document.getElementById("error");
+    const errorMsgEl = document.getElementById("error-msg");
+
+    errorMsgEl.innerHTML = msg ?? "Something went wrong!!";
+
+    if (!state) {
+        const isHidden = errorEl.classList.contains("hide");
+        if (isHidden) {
+            errorEl.classList.remove("hide");
+        } else {
+            errorEl.classList.add("hide");
+        }
+    } else {
+        if (state == "hide") {
+            errorEl.classList.add("hide");
+        } else if (state == "show") {
+            errorEl.classList.remove("hide");
+        }
+    }
+};
+
 export const addClass = (identifier, classes) => {
     const element = document.querySelector(identifier);
 
@@ -34,6 +82,31 @@ export const addClass = (identifier, classes) => {
         const cssClass = classes[i];
         element.classList.add(cssClass);
     }
+};
+
+export const removeClass = (identifier, classes) => {
+    const element = document.querySelector(identifier);
+
+    if (!element) {
+        console.error(`removeClass => ${identifier} not found!`);
+        return;
+    }
+
+    for (let i = 0; i < classes.length; i++) {
+        const cssClass = classes[i];
+        element.classList.remove(cssClass);
+    }
+};
+
+export const setInnerHtml = (identifier, content) => {
+    const element = document.querySelector(identifier);
+
+    if (!element) {
+        console.error(`setInnerText => ${identifier} not found!`);
+        return;
+    }
+
+    element.innerHTML = content;
 };
 
 export const getQueryParam = (param) => {

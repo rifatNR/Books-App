@@ -3,9 +3,8 @@ import {
     initWishlistPage,
     initSearch,
     initSingleView,
-    showToastr,
 } from "./book-loader.js";
-import { addClass, delay } from "./helper.js";
+import { delay, showToastr } from "./helper.js";
 import { loadHTML } from "./html-loader.js";
 
 const path = window.location.pathname;
@@ -20,6 +19,7 @@ if (path == "/") {
     htmlToLoad = [
         ...htmlToLoad,
         loadHTML("pagination-container", "/components/pagination.html"),
+        loadHTML("search-query-container", "/components/search-query-msg.html"),
     ];
 } else if (path == "/wishlist.html") {
     // Do nothing
