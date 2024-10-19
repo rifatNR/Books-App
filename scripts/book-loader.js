@@ -313,14 +313,8 @@ export const initWishlistPage = async () => {
     }
 };
 
-const handleSearch = async (event) => {
-    const query = event.target.value;
-    console.log("Searching for:", query);
-
-    if (!query || query == "") {
-        initBookLoader();
-        return;
-    }
+const search = async (query, genre) => {
+    console.log("Searching for:", query, genre);
 
     addClass("#pagination-container", ["hide"]);
     removeClass("#search-query-container", ["hide"]);
@@ -329,8 +323,17 @@ const handleSearch = async (event) => {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
 
-    const currentPage = parseInt(getQueryParam("page") ?? 1);
-    const url = `https://gutendex.com/books/?search=${query}`;
+    // const currentPage = parseInt(getQueryParam("page") ?? 1);
+    // const url = `https://gutendex.com/books/?search=${query}`;
+    const baseUrl = "https://gutendex.com/books";
+    const urlWithSearchParam = new URL(baseUrl);
+    if (query && query != "") {
+        urlWithSearchParam.searchParams.append("search", query);
+    }
+    if (genre && genre != "") {
+        urlWithSearchParam.searchParams.append("topic", genre);
+    }
+    const url = urlWithSearchParam?.toString();
 
     toggleLoader("show");
     const { books, totalResults } = await fetchBooks(url);
@@ -342,8 +345,8 @@ const handleSearch = async (event) => {
     );
 
     if (books) {
-        const totalPage = Math.ceil(totalResults / books.length);
-        updatePagination(currentPage, totalPage);
+        // const totalPage = Math.ceil(totalResults / books.length);
+        // updatePagination(currentPage, totalPage);
 
         await renderBooks(books);
         loadWishlistIds();
@@ -351,9 +354,25 @@ const handleSearch = async (event) => {
     }
 };
 
-function handleGenreClick(genre) {
-    console.log("Genre clicked:", genre);
-}
+const handleGenreClick = (genre) => {
+    const selectedGenreInput = document.getElementById("selected-genre");
+    selectedGenreInput.value = genre;
+
+    const query = document.getElementById("search-input")?.value;
+    search(query, genre);
+};
+
+export const handleSearchInput = (e) => {
+    const query = e.target.value;
+
+    if (!query || query == "") {
+        initBookLoader();
+        return;
+    }
+
+    const genre = document.getElementById("selected-genre")?.value;
+    search(query, genre);
+};
 
 export const loadGenres = async () => {
     try {
@@ -380,7 +399,7 @@ export const loadGenres = async () => {
 
 export const initEventListener = async () => {
     const searchInput = document.getElementById("search-input");
-    searchInput?.addEventListener("input", debounce(handleSearch, 1000));
+    searchInput?.addEventListener("input", debounce(handleSearchInput, 1000));
 
     const filterButton = document.getElementById("filter-button");
     filterButton?.addEventListener("click", () => {
