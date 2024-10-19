@@ -1,3 +1,5 @@
+import { showToastr } from "./helper.js";
+
 export const saveToWishlist = (id) => {
     const savedWishlistStr = localStorage.getItem("wishlist");
     const savedWishlist = savedWishlistStr ? JSON.parse(savedWishlistStr) : [];
@@ -35,9 +37,11 @@ export const initWishlistEventListener = () => {
 
             if (button.classList.contains("active")) {
                 removeFromWishlist(id);
+                showToastr("❌ Removed from wishlist.");
                 updateWishlistButton(id, false);
             } else {
                 saveToWishlist(id);
+                showToastr("✅ Added to wishlist.");
                 updateWishlistButton(id, true);
             }
         });

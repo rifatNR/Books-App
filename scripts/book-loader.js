@@ -361,6 +361,11 @@ const handleFilter = () => {
     const query = document.getElementById("filter-query-input")?.value;
     const genre = document.getElementById("filter-genre-input")?.value;
 
+    if (query == "" && genre == "") {
+        showToastr("⚠️ Please enter title or genre. ⚠️");
+        return;
+    }
+
     if (query !== "") {
         localStorage.setItem("filter-query", query);
     }
