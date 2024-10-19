@@ -11,17 +11,17 @@ import { initWishlistEventListener, loadWishlistIds } from "./wishlist.js";
 const toggleLoader = (state = null) => {
     const loaderEl = document.getElementById("loader");
     if (!state) {
-        const isHidden = loaderEl.classList.contains("hide");
+        const isHidden = loaderEl?.classList.contains("hide");
         if (isHidden) {
-            loaderEl.classList.remove("hide");
+            loaderEl?.classList.remove("hide");
         } else {
-            loaderEl.classList.add("hide");
+            loaderEl?.classList.add("hide");
         }
     } else {
         if (state == "hide") {
-            loaderEl.classList.add("hide");
+            loaderEl?.classList.add("hide");
         } else if (state == "show") {
-            loaderEl.classList.remove("hide");
+            loaderEl?.classList.remove("hide");
         }
     }
 };

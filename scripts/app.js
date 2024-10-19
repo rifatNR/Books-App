@@ -9,6 +9,7 @@ import { loadHTML } from "./html-loader.js";
 
 Promise.all([
     loadHTML("navbar", "/components/navbar.html"),
+    loadHTML("loading-container", "/components/loader.html"),
     loadHTML("pagination-container", "/components/pagination.html"),
 ])
     .then(() => {
