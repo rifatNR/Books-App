@@ -259,7 +259,7 @@ export const initSingleView = async () => {
 
         // ! Translators
         const translatorsHtml = book?.translators?.map(
-            (translator) => `<li>${translator}</li>`
+            (translator) => `<li>${translator.name}</li>`
         );
         document.getElementById("translators-list").innerHTML =
             translatorsHtml?.join("");
