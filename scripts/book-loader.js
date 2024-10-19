@@ -66,16 +66,21 @@ const updatePagination = (currentPage, totalPage) => {
 
     paginationContainer.innerHTML = "";
 
+    const baseSearchParams = window.location.search;
+    const newParams = new URLSearchParams(baseSearchParams);
+
     if (currentPage > 1) {
         prevButton.style.display = "inline-flex";
-        prevButton.href = `?page=${currentPage - 1}`;
+        newParams.set("page", currentPage - 1);
+        prevButton.href = "?" + newParams?.toString();
     } else {
         prevButton.style.display = "none";
     }
 
     if (currentPage < totalPage) {
         nextButton.style.display = "inline-flex";
-        nextButton.href = `?page=${currentPage + 1}`;
+        newParams.set("page", currentPage + 1);
+        nextButton.href = "?" + newParams?.toString();
     } else {
         nextButton.style.display = "none";
     }
@@ -93,7 +98,8 @@ const updatePagination = (currentPage, totalPage) => {
 
     for (let i = startPage; i <= endPage; i++) {
         const pageLink = document.createElement("a");
-        pageLink.href = `?page=${i}`;
+        newParams.set("page", i);
+        pageLink.href = "?" + newParams?.toString();
         pageLink.textContent = i;
         pageLink.classList.add("pagination-link");
 
