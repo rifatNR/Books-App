@@ -55,6 +55,8 @@ Promise.all(htmlToLoad)
 
         initEventListener();
 
+        document.querySelector("#wishlist-link").href = "/wishlist.html";
+
         if (path == "/") {
             initBookLoader();
             loadSavedFilter();
