@@ -15,6 +15,7 @@
 @import url('./view.css');
 @import url('./toastr.css');
 @import url('./dropdown.css');
+@import url('./footer.css');
 
 body {
     font-family     : var(--font-inter);

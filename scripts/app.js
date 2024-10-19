@@ -21,9 +21,13 @@ if (path == "/") {
         ...htmlToLoad,
         loadHTML("pagination-container", "/components/pagination.html"),
         loadHTML("search-query-container", "/components/search-query-msg.html"),
+        loadHTML("footer-container", "/components/footer.html"),
     ];
 } else if (path == "/wishlist.html") {
-    // Do nothing
+    htmlToLoad = [
+        ...htmlToLoad,
+        loadHTML("footer-container", "/components/footer.html"),
+    ];
 } else if (path == "/view.html") {
     htmlToLoad = [
         ...htmlToLoad,
