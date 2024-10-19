@@ -350,6 +350,34 @@ const handleSearch = async (event) => {
         initWishlistEventListener();
     }
 };
+
+function handleGenreClick(genre) {
+    console.log("Genre clicked:", genre);
+}
+
+export const loadGenres = async () => {
+    try {
+        const response = await fetch("/cache/genres.json");
+        const data = await response.json();
+
+        const dropdownContent = document.getElementById("dropdown-content");
+
+        dropdownContent.innerHTML = "";
+
+        data.forEach((genre) => {
+            const optionDiv = document.createElement("div");
+            optionDiv.classList.add("dropdown-option");
+            optionDiv.textContent = genre;
+
+            optionDiv.addEventListener("click", () => handleGenreClick(genre));
+
+            dropdownContent.appendChild(optionDiv);
+        });
+    } catch (error) {
+        console.error("Error loading genres:", error);
+    }
+};
+
 export const initEventListener = async () => {
     const searchInput = document.getElementById("search-input");
     searchInput?.addEventListener("input", debounce(handleSearch, 1000));

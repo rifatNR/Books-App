@@ -3,6 +3,7 @@ import {
     initWishlistPage,
     initEventListener,
     initSingleView,
+    loadGenres,
 } from "./book-loader.js";
 import { addClass, delay, showToastr } from "./helper.js";
 import { loadHTML } from "./html-loader.js";
@@ -52,6 +53,7 @@ Promise.all(htmlToLoad)
 
         if (path == "/") {
             initBookLoader();
+            loadGenres();
             showSomeWelcomeMessage();
         } else if (path == "/wishlist.html") {
             initWishlistPage();
