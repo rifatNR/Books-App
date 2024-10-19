@@ -196,6 +196,16 @@ const fetchBooksByIds = async (ids) => {
         return null;
     }
 };
+const fetchSingleBook = async (id) => {
+    try {
+        const response = await fetch(`https://gutendex.com/books/${id}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    }
+};
 
 export const initBookLoader = async () => {
     addClass("#search-query-container", ["hide"]);
@@ -234,11 +244,7 @@ export const initSingleView = async () => {
     const id = getQueryParam("book_id");
 
     toggleLoader("show");
-    const books = await fetchBooksByIds([id]);
-    // const books = await fetch(`/cache/demo-single-book.json`).then((response) =>
-    //     response.json()
-    // );
-    const book = books[0];
+    const book = await fetchSingleBook(id);
     toggleLoader("hide");
 
     toggleError("404: Book not found!", !!book.id ? "hide" : "show");
