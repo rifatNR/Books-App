@@ -146,10 +146,15 @@
     list-style-type: decimal;
 }
 
+.iframe-disclaimer {
+    margin-top: 40px;
+    color: gray;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
 .book-iframe {
     width     : 100%;
     min-height: 100vh;
-    margin-top: 40px;
     background-color: white;
 }
 
