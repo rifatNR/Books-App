@@ -356,6 +356,6 @@ export const initSearch = async () => {
 
     const filterButton = document.getElementById("filter-option");
     filterButton.addEventListener("click", () => {
-        showToastr("No available genre options for the gutendex API.");
+        showToastr("⚠️ Gutendex API has No available genre options. ⚠️");
     });
 };

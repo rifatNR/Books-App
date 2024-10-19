@@ -35,7 +35,7 @@ const showSomeWelcomeMessage = async () => {
     if (!!isWelcomeMsgRendered) return;
     localStorage.setItem("isWelcomeDone", true);
     await delay(2000);
-    showToastr("Hi");
+    showToastr("Hi. ✋😃");
     await delay(4000);
     showToastr("🎉Thank you for visiting this site.🎉");
 };
