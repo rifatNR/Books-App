@@ -18,6 +18,7 @@
     --max-body-w: 1500px;
 
     /* z-index */
+    --z-toastr: 101;
     --z-navbar: 100;
     --z-loader: 99;
     --z-error: 98;

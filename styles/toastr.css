@@ -1,0 +1,23 @@
+.toastr {
+    position: fixed;
+    min-width: 6rem;
+    text-align: center;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #323232;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: var(--z-toastr);
+}
+
+.toastr.show {
+    opacity: 1;
+    visibility: visible;
+}

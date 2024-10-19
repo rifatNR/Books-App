@@ -12,6 +12,7 @@
 @import url('./error-page.css');
 @import url('./loader.css');
 @import url('./view.css');
+@import url('./toastr.css');
 
 body {
     font-family     : var(--font-inter);
@@ -28,6 +29,10 @@ a {
 ul {
     margin: 0;
     padding-left: 30px;
+}
+
+button {
+    border: none;
 }
 
 .container {

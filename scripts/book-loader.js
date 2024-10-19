@@ -8,6 +8,15 @@ import {
 } from "./helper.js";
 import { initWishlistEventListener, loadWishlistIds } from "./wishlist.js";
 
+export const showToastr = (msg) => {
+    const toastr = document.getElementById("toastr");
+    if (!toastr) return;
+    toastr.innerHTML = msg;
+    toastr.classList.add("show");
+    setTimeout(() => {
+        toastr.classList.remove("show");
+    }, 3000);
+};
 const toggleLoader = (state = null) => {
     const loaderEl = document.getElementById("loader");
     if (!state) {
@@ -379,4 +388,9 @@ const handleSearch = async (event) => {
 export const initSearch = async () => {
     const searchInput = document.getElementById("search-input");
     searchInput.addEventListener("input", debounce(handleSearch, 1000));
+
+    const filterButton = document.getElementById("filter-option");
+    filterButton.addEventListener("click", () => {
+        showToastr("No available genre options for the gutendex API.");
+    });
 };
