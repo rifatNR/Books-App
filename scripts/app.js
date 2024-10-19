@@ -1,7 +1,7 @@
 import {
     initBookLoader,
     initWishlistPage,
-    initSearch,
+    initEventListener,
     initSingleView,
 } from "./book-loader.js";
 import { addClass, delay, showToastr } from "./helper.js";
@@ -48,7 +48,7 @@ Promise.all(htmlToLoad)
 
         const path = window.location.pathname;
 
-        initSearch();
+        initEventListener();
 
         if (path == "/") {
             initBookLoader();

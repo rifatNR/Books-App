@@ -350,12 +350,21 @@ const handleSearch = async (event) => {
         initWishlistEventListener();
     }
 };
-export const initSearch = async () => {
+export const initEventListener = async () => {
     const searchInput = document.getElementById("search-input");
-    searchInput.addEventListener("input", debounce(handleSearch, 1000));
+    searchInput?.addEventListener("input", debounce(handleSearch, 1000));
 
-    const filterButton = document.getElementById("filter-option");
-    filterButton.addEventListener("click", () => {
-        showToastr("⚠️ Gutendex API has No available genre options. ⚠️");
+    const filterButton = document.getElementById("filter-button");
+    filterButton?.addEventListener("click", () => {
+        // showToastr("⚠️ Gutendex API has No available genre options. ⚠️");
+        removeClass("#dropdown-content", ["hide"]);
     });
+
+    // ! Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches("#filter-button")) {
+            console.log("------------------");
+            addClass("#dropdown-content", ["hide"]);
+        }
+    };
 };

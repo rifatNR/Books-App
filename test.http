@@ -8,3 +8,6 @@ GET https://gutendex.com/books/1259
 
 ###
 GET https://gutendex.com/books?search=dickens%20great
+
+###
+GET https://gutendex.com/books?topic=Revenge

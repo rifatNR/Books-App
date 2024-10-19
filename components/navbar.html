@@ -21,9 +21,16 @@
                   <i class="searchbar-icon-text fa-solid fa-magnifying-glass"></i>
                 </div>
                 <input id="search-input" class="searchbar-input-field" type="search" placeholder="Search..." />
-                <button id="filter-option" class="searchbar-icon searchbar-right-icon">
-                  <i class="searchbar-icon-text fa-solid fa-bars"></i>
-                </button>
+                <div class="dropdown">
+                    <button id="filter-button" class="searchbar-icon searchbar-right-icon">
+                      <i class="searchbar-icon-text pointer-none fa-solid fa-bars"></i>
+                    </button>
+                    <div id="dropdown-content" class="dropdown-content hide">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
             </div>
         </div>
           
