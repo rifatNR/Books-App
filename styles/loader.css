@@ -14,7 +14,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    font-size: 100px;
     width: 100%;
     text-align: center;
 
@@ -23,7 +22,9 @@
     justify-content: center;
     font-family: var(--font-megrim);
 }
-
+.loader-text {
+  font-size: 50px; 
+}
 
 .lds-ripple,
 .lds-ripple div {

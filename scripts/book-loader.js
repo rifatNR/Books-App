@@ -248,15 +248,14 @@ export const initSingleView = async () => {
     // const books = await fetch(`/cache/demo-single-book.json`).then((response) =>
     //     response.json()
     // );
+    const book = books[0];
     toggleLoader("hide");
 
-    toggleError(
-        "404: No books found!",
-        !!books && books?.length ? "hide" : "show"
-    );
+    toggleError("404: Book not found!", !!book.id ? "hide" : "show");
 
-    if (books && books.length > 0) {
-        const book = books[0];
+    console.log("-----", book);
+
+    if (book.id) {
         console.log("Single Book", book);
 
         document.getElementById("book-id").innerHTML = "#" + book.id;
