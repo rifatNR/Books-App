@@ -37,7 +37,9 @@ const showSomeWelcomeMessage = async () => {
     await delay(2000);
     showToastr("Hi. ✋😃");
     await delay(4000);
-    showToastr("🎉Thank you for visiting this site.🎉");
+    showToastr("I'm Rifat Noor 🙋");
+    await delay(5000);
+    showToastr("🎉Thank you for visiting my site.🎉");
 };
 
 Promise.all(htmlToLoad)

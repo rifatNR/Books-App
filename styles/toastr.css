@@ -21,3 +21,10 @@
     opacity: 1;
     visibility: visible;
 }
+
+
+@media (width < 768px) {
+    .toastr {
+        width: 60%;
+    }
+}
