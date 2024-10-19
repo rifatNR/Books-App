@@ -11,8 +11,13 @@ import {
     toggleError,
     setInnerHtml,
     replaceHttpWithHttps,
+    cleanBookObject,
 } from "./helper.js";
-import { initWishlistEventListener, loadWishlistIds } from "./wishlist.js";
+import {
+    getAllLocalWishlistData,
+    initWishlistEventListener,
+    loadWishlistIds,
+} from "./wishlist.js";
 import {
     fetchBooks,
     fetchSingleBook,
@@ -105,13 +110,14 @@ const renderSingleBookCard = async (
         (author) => `<div class="card-subtitle truncate">${author?.name}</div>`
     );
 
+    const cleanFullBookData = cleanBookObject(fullBookData);
+    const fullBookDataStr = JSON.stringify(cleanFullBookData);
+
     const cardHTML = `
         <a href="/view.html?book_id=${id}" id="card_${id}" class="card">
             <div class="card-image-container">
                 <img src="${image}" alt="">
-                <div data-id="${id}" data-full=${JSON.stringify(
-        fullBookData
-    )} id="wishlist_${id}" class="wishlist shadow">
+                <div data-id="${id}" data-full='${fullBookDataStr}' id="wishlist_${id}" class="wishlist shadow">
                     <i class="fa-regular fa-heart pointer-none"></i>
                 </div>
             </div>
@@ -209,8 +215,6 @@ export const initSingleView = async () => {
 
     toggleError("404: Book not found!", !!book.id ? "hide" : "show");
 
-    console.log("-----", book);
-
     if (book.id) {
         console.log("Single Book", book);
 
@@ -269,7 +273,7 @@ export const initWishlistPage = async () => {
 
     toggleLoader("show");
     toggleSearchInput("disable");
-    const books = await fetchBooksByIds(ids);
+    const books = await getAllLocalWishlistData();
     toggleLoader("hide");
     toggleSearchInput("enable");
     console.log(books);

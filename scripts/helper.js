@@ -128,3 +128,28 @@ export const replaceHttpWithHttps = (url) => {
     if (url === null) return "";
     return url.replace(/http:\/\//g, "https://");
 };
+
+export const encodeToBase64 = (obj) => {
+    const jsonString = JSON.stringify(obj);
+    return btoa(jsonString);
+};
+export const decodeFromBase64 = (base64String) => {
+    const jsonString = atob(base64String);
+    return JSON.parse(jsonString);
+};
+
+export const cleanBookObject = (book) => {
+    const { id, title, authors, formats, download_count } = book;
+
+    const cleanedAuthors = authors.map(({ name }) => ({ name }));
+
+    const filteredFormats = { "image/jpeg": formats["image/jpeg"] };
+
+    return {
+        id,
+        title,
+        authors: cleanedAuthors,
+        formats: filteredFormats,
+        download_count,
+    };
+};

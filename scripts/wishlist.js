@@ -35,7 +35,7 @@ export const initWishlistEventListener = () => {
             console.log(`Wishlist ID: ${id}`);
             if (!id) return;
 
-            const fullDataStr = event.target.getAttribute("data-full");
+            const fullData = event.target.getAttribute("data-full");
 
             if (button.classList.contains("active")) {
                 removeFromWishlist(id);
@@ -46,7 +46,7 @@ export const initWishlistEventListener = () => {
                 saveToWishlist(id);
                 showToastr("✅ Added to wishlist.");
                 updateWishlistButton(id, true);
-                localStorage.setItem(`wishlist_[${id}]`, fullDataStr);
+                localStorage.setItem(`wishlist_[${id}]`, fullData);
             }
         });
     });
@@ -58,5 +58,27 @@ export const loadWishlistIds = () => {
 
     savedWishlist.forEach((id) => {
         updateWishlistButton(id, true);
+    });
+};
+
+export const getAllLocalWishlistData = () => {
+    return new Promise((resolve, reject) => {
+        try {
+            const ids = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const wishlistData = [];
+
+            ids.forEach((id) => {
+                const data = JSON.parse(
+                    localStorage.getItem(`wishlist_[${id}]`)
+                );
+                if (data) {
+                    wishlistData.push(data);
+                }
+            });
+
+            resolve(wishlistData);
+        } catch (error) {
+            reject(error);
+        }
     });
 };
