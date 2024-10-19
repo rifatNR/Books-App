@@ -357,6 +357,14 @@ const search = async (query, genre) => {
 const handleFilter = () => {
     const query = document.getElementById("filter-query-input")?.value;
     const genre = document.getElementById("filter-genre-input")?.value;
+
+    if (query !== "") {
+        localStorage.setItem("filter-query", query);
+    }
+    if (genre !== "") {
+        localStorage.setItem("filter-genre", genre);
+    }
+
     search(query, genre);
 };
 
@@ -371,22 +379,12 @@ export const handleSearchInput = (e) => {
     search(query);
 };
 
-export const loadGenres = async () => {
-    // try {
-    //     const response = await fetch("/cache/genres.json");
-    //     const data = await response.json();
-    //     const dropdownContent = document.getElementById("dropdown-content");
-    //     dropdownContent.innerHTML = "";
-    //     data.forEach((genre) => {
-    //         const optionDiv = document.createElement("div");
-    //         optionDiv.classList.add("dropdown-option");
-    //         optionDiv.textContent = genre;
-    //         optionDiv.addEventListener("click", () => handleGenreClick(genre));
-    //         dropdownContent.appendChild(optionDiv);
-    //     });
-    // } catch (error) {
-    //     console.error("Error loading genres:", error);
-    // }
+export const loadSavedFilter = async () => {
+    const query = localStorage.getItem("filter-query");
+    const genre = localStorage.getItem("filter-genre");
+
+    document.getElementById("filter-query-input").value = query;
+    document.getElementById("filter-genre-input").value = genre;
 };
 
 export const initEventListener = async () => {
@@ -403,7 +401,6 @@ export const initEventListener = async () => {
 
     const filterButton = document.getElementById("filter-button");
     filterButton?.addEventListener("click", () => {
-        showToastr("⚠️ Working on it ⚠️");
         handleFilter();
     });
 
